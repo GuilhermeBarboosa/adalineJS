@@ -419,5 +419,5 @@ function testartIA() {
 
   document.getElementById(
     "resposta"
-  ).innerHTML = `<p class='resposta'>A REPOSTA É: <span class='string'>${string}</span></p>`;
+  ).innerHTML = `<p style="text-align: center;" class='justfy-content-center'>A resposta é: <span style="color:blue" class='string'>${string}</span></p>`;
 }
