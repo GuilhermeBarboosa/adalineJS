@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    <link href="/style.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Treinamento de IA</h1>
+
+    <legend>Select a maintenance drone:</legend>
+
+    <div>
+      <input
+        type="radio"
+        id="erro"
+        name="inputTipo"
+        value="1"
+        onclick="verificarTipoInput(value)"
+      />
+      <label for="erro">Erro</label>
+    </div>
+
+    <div>
+      <input
+        type="radio"
+        id="ciclo"
+        name="inputTipo"
+        value="2"
+        onclick="verificarTipoInput(value)"
+      />
+      <label for="ciclo">Ciclo</label>
+    </div>
+
+    <div id="labelErro" style="display: none">
+      <label for="ciclo">Insira o erro</label>
+      <input
+        type="number"
+        id="erroInput"
+        name="erroInput"
+        minlength="4"
+        maxlength="8"
+        size="10"
+      />
+    </div>
+
+    <div id="labelCiclo" style="display: none">
+      <label for="ciclo">Insira o ciclo</label>
+      <input
+        type="number"
+        id="cicloInput"
+        name="cicloInput"
+        minlength="4"
+        maxlength="8"
+        size="10"
+      />
+    </div>
+
+    <div id="labelAlfa" style="display: none">
+      <label for="alfa">Insira o alfa</label>
+      <input
+        type="number"
+        id="alfaInput"
+        name="alfaInput"
+        minlength="4"
+        maxlength="8"
+        size="10"
+      />
+    </div>
+
+    <button style="display: none" id="botaoEnviar" onclick="submitIA()">
+      Enviar
+    </button>
+
+    <div style="width: 50%";>
+      <canvas id="myChart"></canvas>
+    </div>
+
+
+    <div id="divTeste" style="display : none">
+        <div class="row" style="padding-left: 15%">
+            <div style="width: 150px;">
+                <input class="" name="inputTestes" type="checkbox" value="1" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="2" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="3" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="4" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="5" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="6" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="7" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="8" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="9" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="10" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="11" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="12" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="13" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="14" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="15" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="16" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="17" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="18" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="19" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="20" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="21" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="22" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="23" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="24" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="25" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="26" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="27" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="28" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="29" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="30" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="31" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="32" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="33" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="34" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="35" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="36" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="37" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="38" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="39" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="40" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="41" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="42" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="43" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="44" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="45" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="46" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="47" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="48" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="49" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="50" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="51" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="52" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="53" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="54" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="55" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="56" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="57" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="58" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="59" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="60" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="61" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="62" id="selecionarTeste">
+                <input class="" name="inputTestes" type="checkbox" value="63" id="selecionarTeste">
+            </div>
+        </div>
+    
+        <button style="display: block" id="testartIA" onclick="testartIA()">
+            Enviar
+        </button>
+    
+    </div>
+
+    <div id="resposta"></div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
