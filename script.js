@@ -254,7 +254,6 @@ for (let j = 0; j < numclasses; j++) {
 
 var OpcRadio = 0;
 
-
 function treinarIA() {
   console.log("TREINANDO... \n");
   console.log("CICLOS: " + ciclo + " ERRO: " + erro);
@@ -304,7 +303,6 @@ function treinarIA() {
   }
 
   document.getElementById("divTeste").style.display = "block";
-
 }
 
 function verificarTipoInput(value) {
@@ -323,107 +321,103 @@ function verificarTipoInput(value) {
 }
 
 function submitIA() {
+  var erroInput = document.getElementById("erroInput").value;
+  var cicloInput = document.getElementById("cicloInput").value;
+  alfa = document.getElementById("alfaInput").value;
 
-var erroInput = document.getElementById("erroInput").value 
-var cicloInput = document.getElementById("cicloInput").value 
-alfa = document.getElementById("alfaInput").value 
-
-
-console.log("ERRO: " + erroInput)
-console.log("CICLO: " + cicloInput)
-console.log("ALFA: " + alfa)
-console.log("OPC: " + OpcRadio)
-
-  if (OpcRadio == 1) {
-    while (erro > errotolerado) {
-      treinarIA();
+  if (erroInput != null || (cicloInput != null && alfa != null)) {
+    if (OpcRadio == 1) {
+      while (erro > erroInput) {
+        treinarIA();
+      }
+    } else {
+      while (ciclo < cicloInput) {
+        treinarIA();
+      }
     }
-  } else {
-    while (ciclo < cicloInput) {
-      treinarIA();
+
+    const numerosSemRepeticao = [...new Set(vetorCiclos)];
+
+    const ctx = document.getElementById("myChart");
+
+    var chartGraph = null;
+
+    chartGraph = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: numerosSemRepeticao,
+        datasets: [
+          {
+            label: "Erro",
+            data: vetorErros,
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+}
+
+function testartIA() {
+  var vetorTeste = [
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1,
+  ];
+  var checkboxTeste = document.getElementsByName("inputTestes");
+  for (var i = 0; i < checkboxTeste.length; i++) {
+    if (checkboxTeste[i].checked) {
+      vetorTeste[i] = 1;
     }
   }
 
-  const numerosSemRepeticao = [...new Set(vetorCiclos)];
-
-  const ctx = document.getElementById("myChart");
-
-  var chartGraph = null
-
-  chartGraph = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: numerosSemRepeticao,
-      datasets: [
-        {
-          label: "Erro",
-          data: vetorErros,
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
-}
-
-
-function testartIA(){
-    var vetorTeste = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1]
-    var checkboxTeste = document.getElementsByName('inputTestes');
-    for (var i = 0; i < checkboxTeste.length; i++){
-        if ( checkboxTeste[i].checked ) {
-            vetorTeste[i] = 1;
-        }
+  for (let m2 = 0; m2 < numclasses; m2++) {
+    soma = 0;
+    for (let n2 = 0; n2 < entradas; n2++) {
+      soma = soma + vetorTeste[n2] * v[n2][m2];
+      yin[m2] = soma + v0[m2];
     }
+  }
 
-    for (let m2 = 0; m2 < numclasses; m2++) {
-      soma = 0;
-      for (let n2 = 0; n2 < entradas; n2++) {
-        soma = soma + vetorTeste[n2] * v[n2][m2];
-        yin[m2] = soma + v0[m2];
-      }
+  console.log(yin);
+
+  for (let j = 0; j < numclasses; j++) {
+    if (yin[j] >= limiar) {
+      y[j] = 1.0;
+    } else {
+      y[j] = -1.0;
     }
-    
-    console.log(yin);
-    
-    for (let j = 0; j < numclasses; j++) {
-      if (yin[j] >= limiar) {
-        y[j] = 1.0;
-      } else {
-        y[j] = -1.0;
-      }
-    }
-    
-    console.log(y);
+  }
 
-    var string = "";
+  console.log(y);
 
-    if (y[0] == 1){
-        string = "A";
-    }else if (y[1] == 1){
-        string = "B";
-    }else if (y[2] == 1){
-        string = "C";
-    }else if (y[3] == 1){
+  var string = "";
 
-        string = "D";
-    }else if (y[4] == 1){
-        string = "E";
-    }else if (y[5] == 1){
-        string = "J";
-    }else if (y[6] == 1){
-        string = "K";
-    }
+  if (y[0] == 1) {
+    string = "A";
+  } else if (y[1] == 1) {
+    string = "B";
+  } else if (y[2] == 1) {
+    string = "C";
+  } else if (y[3] == 1) {
+    string = "D";
+  } else if (y[4] == 1) {
+    string = "E";
+  } else if (y[5] == 1) {
+    string = "J";
+  } else if (y[6] == 1) {
+    string = "K";
+  }
 
-
-    document.getElementById("resposta").innerHTML = `<p>A REPOSTA É: ${string}</p>`;
+  document.getElementById(
+    "resposta"
+  ).innerHTML = `<p class='resposta'>A REPOSTA É: <span class='string'>${string}</span></p>`;
 }
